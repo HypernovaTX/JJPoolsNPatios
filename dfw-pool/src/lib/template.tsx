@@ -1,9 +1,7 @@
-import React from 'react';
-
 export default class Template {
     header = (
-        <div key='h'>
-            <div></div>
+        <div key='h_'>
+            <div key='ht_'>Test</div>
         </div>
     );
     
