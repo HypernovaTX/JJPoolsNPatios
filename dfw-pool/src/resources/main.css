@@ -1,0 +1,19 @@
+/* */
+.section.head {
+    width: 100vw;
+    height: 50vh;
+    background: var(--accent-color);
+}
+
+.section-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.section-content {
+    display: table;
+    padding: 32px;
+    background: rgba(0,0,0,0.1);
+    margin: auto auto 4em;
+}

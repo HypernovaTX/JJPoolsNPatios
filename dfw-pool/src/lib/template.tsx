@@ -16,5 +16,11 @@ export default class Template {
             </div>
         )
     }
+
+    section1(): JSX.Element {
+        return(
+            <></>
+        ); //Placeholder
+    }
     
 }
