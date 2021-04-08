@@ -13,7 +13,50 @@
 
 .section-content {
     display: table;
-    padding: 32px;
-    background: rgba(0,0,0,0.1);
+    user-select: none;
+}
+
+.section.head .section-content {
+    padding: 8px 32px;
+    background: var(--transparent-box);
+    backdrop-filter: blur(4px);
     margin: auto auto 4em;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 4px 4px var(--shadow);
+}
+
+.section-t, .section-p {
+    color: #FFF;
+}
+.section-t {
+    font-size: 1.5em;
+    /*-webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: #000;*/
+    font-weight: 600;
+    text-shadow: 0 4px 4px var(--shadow);
+    margin: 8px 0px;
+}
+.section-t.head {
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+.section-p.head {
+    text-shadow: 0 3px 3px var(--shadow);
+    text-align: center;
+}
+
+input.section-b.head {
+    display: inline-block;
+    color: #FFF;
+    margin: 8px 8px 8px;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-family: monospace;
+}
+
+input.section-b.head:hover {
+    margin: 10px 8px 6px;
 }
