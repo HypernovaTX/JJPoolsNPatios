@@ -19,8 +19,13 @@ export default class Template {
 
     section1(): JSX.Element {
         return(
-            <></>
-        ); //Placeholder
+            <div key='_s1' className='section'>
+                <div key='_s1_wave' className='wavy-border'></div>
+                <div key='_s1c' className='section-container'>
+
+                </div>
+            </div>
+        ); 
     }
     
 }

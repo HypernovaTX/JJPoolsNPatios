@@ -15,7 +15,8 @@ export default class MainPage extends React.Component<Props, State> {
     }
 
     public render() {
-        let head = this.t.header();
-        return (head);
+        let content = [this.t.header()];
+        content.push(this.t.section1());
+        return (content);
     }
 }
