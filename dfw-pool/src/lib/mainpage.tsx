@@ -15,8 +15,11 @@ export default class MainPage extends React.Component<Props, State> {
     }
 
     public render() {
-        let content = [this.t.header()];
-        content.push(this.t.section1());
+        let content = (<React.Fragment key='_content'>
+            {this.t.header()}
+            {this.t.wavyBorder()}
+            {this.t.section1()}
+        </React.Fragment>);
         return (content);
     }
 }

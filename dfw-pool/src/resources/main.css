@@ -1,6 +1,9 @@
 /* */
-.section.head {
+.section {
     width: 100vw;
+    padding: 16px 24px;
+}
+.section.head {
     height: 50vh;
     background: var(--accent-color);
 }
@@ -59,4 +62,10 @@ input.section-b.head {
 
 input.section-b.head:hover {
     margin: 10px 8px 6px;
+}
+
+.wavy-border {
+    position: absolute;
+    width: 100vw;
+    height: 4em;
 }
