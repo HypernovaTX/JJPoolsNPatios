@@ -1,7 +1,7 @@
 /* */
 .section {
     width: 100vw;
-    padding: 16px 24px;
+    /*padding: 16px 24px;*/
 }
 .section.head {
     height: 50vh;
@@ -67,5 +67,8 @@ input.section-b.head:hover {
 .wavy-border {
     position: absolute;
     width: 100vw;
-    height: 4em;
+    height: 120px;
+    background-image: url(./img/waves.svg);
+    background-repeat: repeat-x;
+    background-size: contain;
 }
