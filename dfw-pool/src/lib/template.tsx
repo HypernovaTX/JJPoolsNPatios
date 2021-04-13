@@ -26,9 +26,14 @@ export default class Template {
     }
 
     public wavyBorder(y: number): JSX.Element {
-        const rawY = y/5;
-        let trimmedY = Math.min(120, rawY);
-        const style = { marginTop: `${-trimmedY}px` };
+        // 23 is the lowest point of the wave (manually calculated)
+        const rawY = (y / 4) + 23;
+        // 180 is the height of the div
+        const upperY = Math.min(180 - 23, rawY); 
+        const style = {
+            marginTop: `${-upperY}px`,
+            backgroundPosition: `${y / 2}px 0px`,
+        };
         return (
             <div key='_s1_wave' className='wavy-border' style={style}></div>
         );

@@ -1,11 +1,13 @@
 /* */
 .section {
     width: 100vw;
-    /*padding: 16px 24px;*/
+    position: relative;
+    z-index: 1;
 }
 .section.head {
-    height: 50vh;
+    height: 70vh;
     background: var(--accent-color);
+    z-index: 0;
 }
 
 .section-container {
@@ -13,17 +15,15 @@
     height: 100%;
     display: flex;
 }
-
 .section-content {
     display: table;
     user-select: none;
 }
-
 .section.head .section-content {
     padding: 8px 32px;
     background: var(--transparent-box);
     backdrop-filter: blur(4px);
-    margin: auto auto 4em;
+    margin: auto auto 6em;
     border-radius: 4px;
     text-align: center;
     box-shadow: 0 4px 4px var(--shadow);
@@ -34,8 +34,6 @@
 }
 .section-t {
     font-size: 1.5em;
-    /*-webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: #000;*/
     font-weight: 600;
     text-shadow: 0 4px 4px var(--shadow);
     margin: 8px 0px;
@@ -67,7 +65,7 @@ input.section-b.head:hover {
 .wavy-border {
     position: absolute;
     width: 100vw;
-    height: 120px;
+    height: 180px;
     background-image: url(./img/waves.svg);
     background-repeat: repeat-x;
     background-size: contain;
