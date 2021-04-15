@@ -1,17 +1,17 @@
 /* */
 .section {
-    width: 100vw;
+    width: var(--view-width);
     position: relative;
     z-index: 1;
 }
 .section.head {
-    height: 70vh;
+    height: 80vh;
     background: var(--accent-color);
     z-index: 0;
 }
 
 .section-container {
-    width: 100vw;
+    width: var(--view-width);
     height: 100%;
     display: flex;
 }
@@ -28,7 +28,8 @@
     text-align: center;
     box-shadow: 0 4px 4px var(--shadow);
     width: 40em;
-    max-width: 80vw;
+    max-width: 60vw;
+    display: block;
 }
 
 .section-t, .section-p {
@@ -58,6 +59,7 @@ input.section-b.head {
     border-radius: 4px;
     font-size: 1.2em;
     font-family: monospace;
+    max-width: calc(100% - 16px);
 }
 
 input.section-b.head:hover {

@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100vw;
+  width: var(--view-width);
   overflow-x: hidden;
   position: relative;
 }
@@ -37,6 +37,8 @@ input[type="button" i] {
   cursor: pointer;
   font-family: monospace;
   margin: 2px auto 2px;
+  max-width: calc(100% - 4px);
+  white-space: normal;
 }
 input[type="button" i]:hover {
   background-color: var(--button-hover-color);
