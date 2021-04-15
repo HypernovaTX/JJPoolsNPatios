@@ -12,12 +12,14 @@ export default class Template {
     }
 
     public header(): JSX.Element {
+        const title = `JJ Polls & Patios`;
+        const summary = `Established in 2010. Over 10 years of experience JJ Pools & Patios provides a reliable and trustworthy service for your pool. Cleaning and remodelling is what we do best for you to spend your time in a crystal-clear pool.`;
         return (
             <div key='_h' className='section head'>
                 <div key='_hc' className='section-container'>
                     <div key='_hcc' className='section-content'>
-                        <div key='_hcc_t' className='section-t head'>JJ Pools n Patios</div>
-                        <div key='_hcc_p' className='section-p head'>About us goes here....lorem ipsum.....etc....etc..</div>
+                        <div key='_hcc_t' className='section-t head'>{title}</div>
+                        <div key='_hcc_p' className='section-p head'>{summary}</div>
                         <input key='_hcc_b' type='button' className='section-b head' value='Reach out to us today!'/>
                     </div>
                 </div>

@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
 }
 
 code {
@@ -19,6 +22,8 @@ code {
   --button-click-color: rgb(131, 69, 11);
   --transparent-box: rgba(0, 0, 0, 0.5);
   --shadow: rgba(0, 0, 0, 0.6);
+
+  --view-width: calc(100vw - (100vw - 100%));
 }
 
 input[type="button" i] {

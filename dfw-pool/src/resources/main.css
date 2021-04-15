@@ -11,7 +11,7 @@
 }
 
 .section-container {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
 }
@@ -27,6 +27,8 @@
     border-radius: 4px;
     text-align: center;
     box-shadow: 0 4px 4px var(--shadow);
+    width: 40em;
+    max-width: 80vw;
 }
 
 .section-t, .section-p {
