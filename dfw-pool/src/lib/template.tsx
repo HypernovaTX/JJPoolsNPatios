@@ -11,11 +11,12 @@ export default class Template {
         return this.key ++;
     }
 
-    public header(): JSX.Element {
-        const title = `JJ Polls & Patios`;
+    public header(y: number): JSX.Element {
+        const title = `JJ Pools & Patios`;
         const summary = `Established in 2010. Over 10 years of experience JJ Pools & Patios provides a reliable and trustworthy service for your pool. Cleaning and remodelling is what we do best for you to spend your time in a crystal-clear pool.`;
+        const sectionStyle = { backgroundPosition: `0px ${y/3}px`, }
         return (
-            <div key='_h' className='section head'>
+            <div key='_h' className='section head' style={sectionStyle}>
                 <div key='_hc' className='section-container'>
                     <div key='_hcc' className='section-content'>
                         <div key='_hcc_t' className='section-t head'>{title}</div>
@@ -28,9 +29,11 @@ export default class Template {
     }
 
     public wavyBorder(y: number): JSX.Element {
-        // 23 is the lowest point of the wave (manually calculated)
+        // calculate how the wavy border is positioned
+        // Note: 23 is the lowest point of the wave (manually calculated)
         const rawY = (y / 4) + 23;
-        // 180 is the height of the div
+        // Calculate the limit so the border doesn't go too far
+        // Note: 180 is the height of the div
         const upperY = Math.min(180 - 23, rawY); 
         const style = {
             marginTop: `${-upperY}px`,

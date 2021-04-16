@@ -6,8 +6,21 @@
 }
 .section.head {
     height: 80vh;
-    background: var(--accent-color);
+    background-color: var(--accent-color);
+    background-image: url(./img/poolbg.jpg);
+    background-size: cover;
     z-index: 0;
+}
+.section.head::after {
+    content: '';
+    background-color: var(--accent-color);
+    position: absolute;
+    width: var(--view-width);
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    opacity: 0.8;
 }
 
 .section-container {
@@ -54,7 +67,7 @@
 input.section-b.head {
     display: inline-block;
     color: #FFF;
-    margin: 8px 8px 8px;
+    margin: 16px 8px 8px;
     padding: 12px 32px;
     border-radius: 4px;
     font-size: 1.2em;
@@ -63,7 +76,7 @@ input.section-b.head {
 }
 
 input.section-b.head:hover {
-    margin: 10px 8px 6px;
+    margin: 18px 8px 6px;
 }
 
 .wavy-border {
