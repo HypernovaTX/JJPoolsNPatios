@@ -48,15 +48,19 @@ export default class Template {
         return (
             <div key='_s1' className='section'>
                 <div key='_s1c' className='section-container'>
-                    Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>
-                    Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>
-                    Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>
-                    Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>
-                    Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>
-                    Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>Stuff<br/>
+                    <h1 key='_s1h' className='section-title'>Our Services</h1>
+                    <div key='_s1_flexbox' className='section-flexbox'>
+
+                    </div>
                 </div>
             </div>
         );
+    }
+
+    public ourServices(): JSX.Element {
+        return (
+            <div key='_svs_1' className='list-main'></div>
+        )
     }
     
 }
