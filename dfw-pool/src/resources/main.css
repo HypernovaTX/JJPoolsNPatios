@@ -27,6 +27,7 @@
     width: var(--view-width);
     height: 100%;
     display: flex;
+    flex-direction: column;
 }
 .section-content {
     display: table;
@@ -86,4 +87,17 @@ input.section-b.head:hover {
     background-image: url(./img/waves.svg);
     background-repeat: repeat-x;
     background-size: contain;
+}
+
+.section-title {
+    text-align: center;
+    width: 100%;
+    color: var(--accent-color2);
+    display: block;
+}
+
+.section-flexbox {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
 }

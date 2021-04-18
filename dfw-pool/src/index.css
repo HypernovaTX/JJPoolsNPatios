@@ -17,6 +17,8 @@ code {
 
 :root {
   --accent-color: rgb(57, 182, 255);
+  --accent-color2: rgb(0, 73, 168);
+  --text-color: rgb(30, 30, 30);
   --button-color: rgb(235, 106, 0);
   --button-hover-color: rgb(255, 196, 0);
   --button-click-color: rgb(131, 69, 11);
