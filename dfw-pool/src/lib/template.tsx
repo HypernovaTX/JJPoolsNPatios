@@ -57,6 +57,7 @@ export default class Template {
 
     public ourServices(): JSX.Element {
         let outputServices: JSX.Element[] = [];
+        // List of services
         const services = [
             {
                 title: 'Silver Package',
@@ -80,15 +81,17 @@ export default class Template {
             },
         ];
 
+        // Convert the list of services from JSON to list elements
         services.forEach((part, index) => {
             let listItem: JSX.Element[] = [];
             // Save all of the list of services for each of the section
             part.list.forEach((item) => { listItem.push(<ul>{item}</ul>); })
             // Save all of the sections of services.
             outputServices.push(
-                <ul key={`_sv_list${index}`} className='service-list'>
+                <ul key={`_sv_list${index}`} className='service-list'> 
                     <ul>{part.title}</ul>
                     {listItem}
+                    <ul>Starting at ${part.price}</ul> 
                 </ul>
             );
         });
