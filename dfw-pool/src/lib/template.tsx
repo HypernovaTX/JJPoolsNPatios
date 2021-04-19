@@ -56,24 +56,58 @@ export default class Template {
     }
 
     public ourServices(): JSX.Element {
-        let keyCount = 0;
-        const services = {
+        let outputServices: JSX.Element[] = [];
+        const services = [
+            {
+                title: 'Silver Package',
+                list: ['Brushing', 'Emptying the baskets', 'Chemical balancing'],
+                price: 120,
+            },
+            {
+                title: 'Chemical Package',
+                list: ['Chemicals only'],
+                price: 85,
+            },
+            {
+                title: 'Full Service',
+                list: ['Brushing', 'Vacuuming', 'Filter cleaning', 'Emptying the baskets', 'Chemical balancing'],
+                price: 150,
+            },
+            {
+                title: 'Green to Clean',
+                list: ['Brushing', 'Draining the pool', 'Acid washing', 'Chemical balancing'],
+                price: 650,
+            },
+        ];
 
-        };
+        services.forEach((part, index) => {
+            let listItem: JSX.Element[] = [];
+            // Save all of the list of services for each of the section
+            part.list.forEach((item) => { listItem.push(<ul>{item}</ul>); })
+            // Save all of the sections of services.
+            outputServices.push(
+                <ul key={`_sv_list${index}`} className='service-list'>
+                    <ul>{part.title}</ul>
+                    {listItem}
+                </ul>
+            );
+        });
 
         return (
             <div key='_sv_flexbox' className='section-flexbox'>
-                <div key='_sv_1T' className='service-title'></div>
-                <ul key='_sv_1L' className='service-list'>
+                {outputServices}
+            </div>
+        )
+        /* OLD
+
+        <ul key='_sv_1L' className='service-list'>
                     <li>Silver Package</li>
                     <li>Brushing</li>
                     <li>Emprushing</li>
                     <li>brushing</li>
                 </ul>
 
-
-            </div>
-        )
+        */
     }
     
 }
