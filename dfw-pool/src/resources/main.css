@@ -23,6 +23,7 @@
     opacity: 0.8;
 }
 
+
 .section-container {
     width: var(--view-width);
     height: 100%;
@@ -33,11 +34,23 @@
     display: table;
     user-select: none;
 }
+.section-logo {
+    max-width: 16em;
+    max-height: 16em;
+    width: 100%;
+    height: 100%;
+    background: url(./img/logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto auto 0px;
+    opacity: 0.9;
+}
 .section.head .section-content {
     padding: 8px 32px;
     background: var(--transparent-box);
     backdrop-filter: blur(4px);
-    margin: auto auto 6em;
+    margin: 2em auto 6em;
     border-radius: 4px;
     text-align: center;
     box-shadow: 0 4px 4px var(--shadow);
@@ -105,23 +118,25 @@ input.section-b.head:hover {
     display: flex;
     flex-direction: row;
     margin: auto;
+    margin-bottom: 48px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
 }
 
 .service-list {
-    max-width: 15em;
+    max-width: 20em;
     width: 80vw;
-    background: var(--accent-color);
-    color:#FFF;
     padding: 1em;
-    border-radius: 1em;
-    box-shadow: 0 4px 4px var(--shadow);
     margin: 16px 32px 16px;
+
     display: flex;
     flex-direction: column;
-    text-align: center;
+
+    background: var(--accent-color2);
+    color:#FFF;
+    box-shadow: 0 4px 4px var(--shadow);
+    border-radius: 0.5em;
     transition: 200ms linear all;
     user-select: none;
 }
@@ -131,21 +146,24 @@ input.section-b.head:hover {
 }
 
 .service-list > *:first-child {
-    font-size: 1.6em;
+    font-size: 1.8em;
     font-family: Antonio;
-    font-weight: 600;
-    color: var(--accent-color2);
-    margin-bottom: 4px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #FFF;
 }
 .service-list > *:last-child {
-    font-size: 1.4em;
     font-weight: 600;
-    color: var(--button-hover-color);
-    margin-bottom: 4px;
+    padding: 4px 0px;
+    border-top: 2px solid #FFF;
 }
 
-.service-list ul {
-    margin-left: -2em;
+.service-list-item {
     font-size: 1.2em;
+    margin: 4px 0px;
+}
+.service-list-item.spacer {
+    flex-grow: 1;
+    margin: 0;
 }
 

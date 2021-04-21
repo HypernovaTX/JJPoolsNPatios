@@ -25,7 +25,7 @@ code {
 :root {
   --accent-color: rgb(57, 182, 255);
   --accent-color2: rgb(0, 73, 168);
-  --accent-color3: rgb(102, 199, 255);
+  --accent-color3: rgb(0, 104, 240);
   --text-color: rgb(30, 30, 30);
   --button-color: rgb(235, 106, 0);
   --button-hover-color: rgb(255, 196, 0);
@@ -34,6 +34,7 @@ code {
   --shadow: rgba(0, 0, 0, 0.6);
 
   --view-width: calc(100vw - (100vw - 100%));
+  --view-ratio: calc(100vw / 100vh)
 }
 
 input[type="button" i] {
