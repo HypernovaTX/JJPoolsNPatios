@@ -35,6 +35,7 @@ export default class MainPage extends React.Component<Props, State> {
             {this.t.header(this.state.scroll)}
             {this.t.wavyBorder(this.state.scroll)}
             {this.t.section1()}
+            {this.t.contactSection()}
         </React.Fragment>);
         return (content);
     }

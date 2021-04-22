@@ -167,3 +167,10 @@ input.section-b.head:hover {
     margin: 0;
 }
 
+.phone-box {
+    display: block;
+    padding: 10px;
+    float: left;
+    height: 4em;
+    width: 13em;
+}

@@ -18,12 +18,23 @@ export default class Template {
         return (
             <div key='_h' className='section head' style={sectionStyle}>
                 <div key='_hc' className='section-container'>
+                    {this.headerSocial()}
                     <div key='_hcl' className='section-logo'></div>
                     <div key='_hcc' className='section-content'>
                         <div key='_hcc_t' className='section-t head'>{title}</div>
                         <div key='_hcc_p' className='section-p head'>{summary}</div>
                         <input key='_hcc_b' type='button' className='section-b head' value='Reach out to us today!'/>
                     </div>
+                </div>
+            </div>
+        )
+    }
+
+    public headerSocial(): JSX.Element {
+        return (
+            <div key='_social' className='social-box'>
+                <div key='_social_p' className='phone-box'>
+                    <input key='_social_pb' type='button' className='section-b' value='PHONE: 214-469-9009'/>
                 </div>
             </div>
         )
@@ -96,6 +107,17 @@ export default class Template {
                 {output}
             </div>
         )
+    }
+
+    public contactSection(): JSX.Element {
+        return(
+            <div key='_c' className='section contact'>
+                <div key='_cc' className='section-container'>
+                    <h1 key='_s1h' className='section-title'>Contact Us</h1>
+                    <p key='_temp_'>CONTACT FORM GOES HERE</p>
+                </div>
+            </div>
+        );
     }
     
 }
