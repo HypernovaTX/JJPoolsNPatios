@@ -167,10 +167,41 @@ input.section-b.head:hover {
     margin: 0;
 }
 
-.phone-box {
+.social-bar {
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    flex-flow: row-reverse;
+}
+
+.phone-box, .social-box {
     display: block;
     padding: 10px;
-    float: left;
-    height: 4em;
+    height: 3em;
     width: 13em;
+}
+.phone-box { width: 13em; }
+.social-box { width: fit-content; }
+
+
+.social-b {
+    background-color: var(--button-color);
+    border: 0;
+    color: #FFF;
+    padding: 12px 32px;
+    border-radius: 4px;
+    transition: 200ms linear all, 50ms linear margin;
+    box-shadow: 0 4px 4px var(--shadow);
+    cursor: pointer;
+    font-family: monospace;
+    margin: 2px auto 2px;
+    white-space: normal;
+    width: fit-content;
+    display: block;
+}
+.social-b:hover {
+    background-color: var(--button-hover-color);
+    margin: 4px auto 0px;
+}
+.social-b:active {
+    background-color: var(--button-click-color);
 }

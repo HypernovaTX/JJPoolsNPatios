@@ -1,11 +1,18 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYelp } from '@fortawesome/free-brands-svg-icons';
+
 export default class Template {
     test: number;
     key: number;
+    phone: string;
 
     constructor(cTest: number) {
         this.test = cTest;
         this.key = 0;
+        this.phone = '214-469-9009';
     }
+
+    private phoneNumber= () => { document.location.href = `tel:${this.phone}`; };
 
     public misc_key(): number {
         return this.key ++;
@@ -31,10 +38,16 @@ export default class Template {
     }
 
     public headerSocial(): JSX.Element {
+        const yelp = 'https://www.yelp.com/biz/jj-pools-and-patios-coppell-3';
         return (
-            <div key='_social' className='social-box'>
+            <div key='_social' className='social-bar'>
                 <div key='_social_p' className='phone-box'>
-                    <input key='_social_pb' type='button' className='section-b' value='PHONE: 214-469-9009'/>
+                    <input key='_social_pb' type='button' className='section-b' value={`PHONE: ${this.phone}`} onClick={this.phoneNumber}/>
+                </div>
+                <div key='_social_y' className='social-box'>
+                    <a href={yelp} key='_social_yb' className='social-b' target='_blank' rel="noreferrer">
+                        <FontAwesomeIcon icon={faYelp}/>
+                    </a>
                 </div>
             </div>
         )
