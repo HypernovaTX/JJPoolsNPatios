@@ -125,8 +125,13 @@ export default class Template {
         return(
             <div key='_c' className='section contact'>
                 <div key='_cc' className='section-container'>
-                    <h1 key='_s1h' className='section-title'>Contact Us</h1>
-                    <p key='_temp_'>CONTACT FORM GOES HERE</p>
+                    <h1 key='_ch' className='section-title'>Contact Us</h1>
+                    <form key='_cf' className='contact-form'>
+                        <label>Name</label><input name='name'></input>
+                        <label>Email</label><input name='email'></input>
+                        <label>Phone</label><input name='phone'></input>
+                        <label>Message</label><input name='message' type='text'></input>
+                    </form>
                 </div>
             </div>
         );

@@ -53,6 +53,10 @@ typings/
 # Optional eslint cache
 .eslintcache
 
+# files
+src/secrets.json
+secrets.php
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/

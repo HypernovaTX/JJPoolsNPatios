@@ -29,6 +29,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .section-container.s1 { padding: 48px 0; }
 .section-content {
@@ -190,16 +191,18 @@ input.section-b.head:hover {
     background-color: var(--button-color);
     border: 0;
     color: #FFF;
-    padding: 12px 32px;
+    padding: 6px 24px;
     border-radius: 4px;
     transition: 200ms linear all, 50ms linear margin;
     box-shadow: 0 4px 4px var(--shadow);
     cursor: pointer;
-    font-family: monospace;
     margin: 2px auto 2px;
     white-space: normal;
+    width: -moz-fit-content;
     width: fit-content;
     display: block;
+    font-size: 1.5em;
+    text-shadow: 0 2px 2px #000;
 }
 .social-b:hover {
     background-color: var(--button-hover-color);
@@ -207,4 +210,23 @@ input.section-b.head:hover {
 }
 .social-b:active {
     background-color: var(--button-click-color);
+}
+.phone-box input[type="button" i] {
+    font-family: 'QuickSand';
+    font-weight: 600;
+    font-size: 1em;
+    padding: 11px 12px;
+}
+.social-b svg.svg-inline--fa.fa-yelp.fa-w-12 {
+    filter: drop-shadow(0px 2px 2px var(--shadow));
+}
+
+form.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 30em;
+    width: 80vw;
+    background: var(--accent-color);
+    padding: 2em 4em;
+    border-radius: 48px;
 }

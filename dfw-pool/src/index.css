@@ -50,6 +50,7 @@ input[type="button" i] {
   margin: 2px auto 2px;
   max-width: calc(100% - 4px);
   white-space: normal;
+  text-shadow: 0 2px 2px #000;
 }
 input[type="button" i]:hover {
   background-color: var(--button-hover-color);
@@ -58,3 +59,4 @@ input[type="button" i]:hover {
 input[type="button" i]:active {
   background-color: var(--button-click-color);
 }
+
