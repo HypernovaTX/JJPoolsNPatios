@@ -25,7 +25,6 @@ export default class Template {
         return (
             <div key='_h' className='section head' style={sectionStyle}>
                 <div key='_hc' className='section-container'>
-                    {this.headerSocial()}
                     <div key='_hcl' className='section-logo'></div>
                     <div key='_hcc' className='section-content'>
                         <div key='_hcc_t' className='section-t head'>{title}</div>
@@ -72,7 +71,7 @@ export default class Template {
     public section1(): JSX.Element {
         return (
             <div key='_s1' className='section'>
-                <div key='_s1c' className='section-container'>
+                <div key='_s1c' className='section-container s1'>
                     <h1 key='_s1h' className='section-title'>Our Services</h1>
                     {this.ourServices()}
                 </div>

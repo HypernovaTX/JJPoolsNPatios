@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
 }
+.section-container.s1 { padding: 48px 0; }
 .section-content {
     display: table;
     user-select: none;
@@ -171,8 +172,12 @@ input.section-b.head:hover {
     background: rgba(0,0,0,0.5);
     display: flex;
     flex-flow: row-reverse;
+    position: fixed;
+    width: var(--view-width);
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 4px var(--shadow);
 }
-
 .phone-box, .social-box {
     display: block;
     padding: 10px;
@@ -181,8 +186,6 @@ input.section-b.head:hover {
 }
 .phone-box { width: 13em; }
 .social-box { width: fit-content; }
-
-
 .social-b {
     background-color: var(--button-color);
     border: 0;
