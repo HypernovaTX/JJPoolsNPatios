@@ -26,6 +26,8 @@ code {
   --accent-color: rgb(57, 182, 255);
   --accent-color2: rgb(0, 73, 168);
   --accent-color3: rgb(0, 104, 240);
+  --accent-color4: rgb(130, 209, 255);
+  --accent-color5: rgb(196, 233, 255);
   --text-color: rgb(30, 30, 30);
   --button-color: rgb(235, 106, 0);
   --button-hover-color: rgb(255, 196, 0);
@@ -37,7 +39,7 @@ code {
   --view-ratio: calc(100vw / 100vh)
 }
 
-input[type="button" i] {
+input[type="button" i], input[type="submit" i] {
   background-color: var(--button-color);
   border: 0;
   color: #FFF;
@@ -52,11 +54,14 @@ input[type="button" i] {
   white-space: normal;
   text-shadow: 0 2px 2px #000;
 }
-input[type="button" i]:hover {
+input[type="button" i]:hover, input[type="submit" i]:hover {
   background-color: var(--button-hover-color);
   margin: 4px auto 0px;
 }
-input[type="button" i]:active {
+input[type="button" i]:active, input[type="submit" i]:active {
   background-color: var(--button-click-color);
 }
 
+textarea {
+  resize: none;
+}

@@ -226,7 +226,21 @@ form.contact-form {
     flex-direction: column;
     max-width: 30em;
     width: 80vw;
-    background: var(--accent-color);
+    background: var(--accent-color2);
     padding: 2em 4em;
-    border-radius: 48px;
+    border-radius: 0.5em;
+    margin-bottom: 48px;
+    color: #FFF;
+}
+
+form.contact-form input[type='text' i],
+form.contact-form input[type='email' i], 
+form.contact-form textarea {
+    margin: 2px 0px 24px;
+    font-family: 'QuickSand';
+    font-size: 1em;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 0.25em;
+    background-color: var(--accent-color5);
 }
