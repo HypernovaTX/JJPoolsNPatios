@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYelp } from '@fortawesome/free-brands-svg-icons';
+import Contact from './contact';
 
 export default class Template {
     test: number;
@@ -123,18 +124,7 @@ export default class Template {
 
     public contactSection(): JSX.Element {
         return(
-            <div key='_c' className='section contact'>
-                <div key='_cc' className='section-container'>
-                    <h1 key='_ch' className='section-title'>Contact Us</h1>
-                    <form key='_cf' className='contact-form'>
-                        <label>Name</label><input name='name' type='text'></input>
-                        <label>Email</label><input name='email' type='email'></input>
-                        <label>Phone</label><input name='phone' type='text'></input>
-                        <label>Message</label><textarea name='message' rows={8}></textarea>
-                        <input type="submit" value="Submit"></input>
-                    </form>
-                </div>
-            </div>
+            <Contact disabled={false}/>
         );
     }
     
