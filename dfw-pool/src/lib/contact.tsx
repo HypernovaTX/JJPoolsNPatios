@@ -1,17 +1,10 @@
 import React from 'react';
 
-type Props = {
-    disabled: boolean,
-};
-type State = {
-    name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean,
-};
-enum Form {
-    name, email, phone, title, message
-};
-
+type Props = { disabled: boolean, };
+type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, };
 type rc_it = React.ChangeEvent<HTMLInputElement>;
 type rc_ta = React.ChangeEvent<HTMLTextAreaElement>;
+enum Form { name, email, phone, title, message, };
 
 export default class Contact extends React.Component<Props, State> {
     constructor(p: Props) {
@@ -21,25 +14,41 @@ export default class Contact extends React.Component<Props, State> {
         }
     }
 
+    // Reset the default - pretty obvious
     private resetValue(): void {
         this.setState({
             name: '', email: '', phone: '', title: '', message: '', recaptcha: false,
         });
     }
 
+    // Used to format inputs that can be formatted as phone number (used for phone number forms)
+    private formatPhoneText(value: string): string {
+        value = value.replace(/[^0-9\b]/g, '').substring(0, 10);
+        
+        if (value.length > 3 && value.length <= 6) {
+            value = value.slice(0,3) + "-" + value.slice(3);
+        } else if (value.length > 6) {
+            value = value.slice(0,3) + "-" + value.slice(3,6) + "-" + value.slice(6);
+        }
+        return value;
+    }
+
+    // Use this for updating the texts in forms, remember to check the Enum "Form"
     private updateForm(state: number, value: string): void {
         switch (state) {
             case (Form.name): this.setState({ name: value }); break;
             case (Form.email): this.setState({ email: value }); break;
-            case (Form.phone): this.setState({ phone: value }); break;
+            case (Form.phone): this.setState({ phone: this.formatPhoneText(value) }); break;
             case (Form.title): this.setState({ title: value }); break;
             case (Form.message): this.setState({ message: value }); break;
         }
     }
 
-    private template(): JSX.Element {
-        const { name, email, phone, title, message } = this.state;
-        // Prepare all of the forums and then map it out to elements
+
+    // All of the forms 
+    private templateForms(): JSX.Element[] {
+        const { name, email, phone, title } = this.state;
+        // Prepare all of the forms as OBJ
         /** Property types
          * l: label text
          * n: name of the input
@@ -53,29 +62,28 @@ export default class Contact extends React.Component<Props, State> {
             { l: 'Phone', n: 'phone', t: 'text', e: Form.phone, v: phone },
             { l: 'Subject', n: 'title', t: 'text', e: Form.title, v: title },
         ];
+
+        // Map the array of OBJ for forms into JSX.Element[]
         const inputs = forms.map((item, n) => {
             return(
                 <React.Fragment key={`_placeholder_form${n}`}>
                     <label>{item.l}</label>
-                    <input
-                        name={item.n}
-                        type={item.t}
-                        value={item.v}
-                        onChange={(e: rc_it) => { this.updateForm(item.e, e.target.value) }}
-                    ></input>
+                    <input name={item.n} type={item.t} value={item.v} onChange={(e: rc_it) => { this.updateForm(item.e, e.target.value) }}></input>
                 </React.Fragment>
             );
         });
 
+        return inputs;
+    }
+
+    // MAIN contact template
+    private template(): JSX.Element {
+        const { message } = this.state;
+
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
-                <textarea
-                    name='message'
-                    rows={8}
-                    value={message}
-                    onChange={(e: rc_ta) => { this.updateForm(Form.message, e.target.value) }}
-                ></textarea>
+                <textarea name='message' rows={8} value={message} onChange={(e: rc_ta) => { this.updateForm(Form.message, e.target.value) }}></textarea>
             </React.Fragment>
         );
 
@@ -84,8 +92,7 @@ export default class Contact extends React.Component<Props, State> {
                 <div key='_cc' className='section-container'>
                     <h1 key='_ch' className='section-title'>Contact Us</h1>
                     <form key='_cf' className='contact-form'>
-                        {inputs}{textbox}
-                        <input type="submit" value="Submit"></input>
+                        {this.templateForms()}{textbox}<input type="submit" value="Submit"></input>
                     </form>
                 </div>
             </div>
