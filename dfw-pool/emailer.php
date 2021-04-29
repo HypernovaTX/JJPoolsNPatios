@@ -1,5 +1,6 @@
 <?php
 	// Original source code written by: Mr-Ventures (https://github.com/Mr-Ventures)
+	// Modified by HypernovaTX
 	// Import some stuffs
 	include './secrets.php';
 
@@ -11,7 +12,8 @@
      || !isset($_POST['email'])
      || !isset($_POST['phone'])
 	 || !isset($_POST['title'])
-     || !isset($_POST['message'])) {
+     || !isset($_POST['message'])
+	 || !isset($_POST['secret'])) {
 		echo 'bad data';
 		exit('');
 	}
@@ -22,7 +24,15 @@
 	$phone =     $_POST['phone'];
 	$title =     $_POST['title'];
 	$message =   $_POST['message'];
+	$secret =    $_POST['secret'];
 	$dest =      $toEmail;
+
+	// Check on the hash ($emailSalt is pulled from ./secrets.php)
+	if (!$secret === $emailSalt) {
+		echo 'bad secret';
+		exit('');
+	}
+	// TO DO - Need hash security
 	
 	// Email headers
 	$headers =  "MIME-Version: 1.0" . "\r\n";
@@ -30,12 +40,12 @@
     $headers .= "From: " . $email . "\r\n" . "Reply-To: " . $dest . "\r\n" . "X-Mailer: PHP/" . phpversion();
 
 	// Send the email
-   	$success = mail($dest, "Fancy Title", $message, $headers); 
+   	$success = mail($dest, $title, $message, $headers); 
 
 	// Determine success/failure
 	if (!$success) {
 		echo(error_get_last()['message']);
-		return;
+		exit('');
 	}
 	echo('success');
 ?>

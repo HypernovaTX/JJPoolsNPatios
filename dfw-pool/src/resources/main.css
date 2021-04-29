@@ -5,7 +5,7 @@
     z-index: 1;
 }
 .section.head {
-    height: 80vh;
+    height: 95vh;
     background-color: var(--accent-color);
     background-image: url(./img/poolbg.jpg);
     background-size: cover;
@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
 }
 .section-container.s1 { padding: 48px 0; }
 .section-content {
@@ -45,7 +46,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    margin: auto auto 0px;
+    margin: 4.5em auto 0px;
     opacity: 0.9;
 }
 .section.head .section-content {
