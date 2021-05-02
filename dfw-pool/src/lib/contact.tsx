@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import React from 'react';
 
 type Props = { disabled: boolean, };
@@ -37,9 +37,13 @@ export default class Contact extends React.Component<Props, State> {
         postData.append('title', title);
         postData.append('message', message);
         postData.append('secret', salt);
+        const header = {
+            headers: { 'Content-Type': 'application/x-www-form-urlencode', },
+            proxy: { host: 'localhost', port: 3000, }
+        };
 
-        axios.post(url, postData).then(() => {
-
+        axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
+            console.log(response);
         });
 
     }
@@ -102,12 +106,14 @@ export default class Contact extends React.Component<Props, State> {
     // MAIN contact template
     private template(): JSX.Element {
         const { message } = this.state;
-
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
                 <textarea name='message' rows={8} value={message} onChange={(e: rc_ta) => { this.updateForm(Form.message, e.target.value) }}></textarea>
             </React.Fragment>
+        );
+        const button = (
+            <input type="button" value="Submit" onClick={() => {this.sendEmail()}}></input>
         );
 
         return (
@@ -115,7 +121,7 @@ export default class Contact extends React.Component<Props, State> {
                 <div key='_cc' className='section-container'>
                     <h1 key='_ch' className='section-title'>Contact Us</h1>
                     <form key='_cf' className='contact-form'>
-                        {this.templateForms()}{textbox}<input type="submit" value="Submit"></input>
+                        {this.templateForms()}{textbox}{button}
                     </form>
                 </div>
             </div>
