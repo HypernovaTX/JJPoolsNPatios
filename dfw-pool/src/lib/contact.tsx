@@ -1,7 +1,8 @@
+import axios from 'axios';
 import React from 'react';
 
 type Props = { disabled: boolean, };
-type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, };
+type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, sending: boolean };
 type rc_it = React.ChangeEvent<HTMLInputElement>;
 type rc_ta = React.ChangeEvent<HTMLTextAreaElement>;
 enum Form { name, email, phone, title, message, };
@@ -10,15 +11,37 @@ export default class Contact extends React.Component<Props, State> {
     constructor(p: Props) {
         super(p);
         this.state = {
-            name: '', email: '', phone: '', title: '', message: '', recaptcha: false,
+            name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false
         }
     }
 
     // Reset the default - pretty obvious
     private resetValue(): void {
         this.setState({
-            name: '', email: '', phone: '', title: '', message: '', recaptcha: false,
+            name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false
         });
+    }
+
+    private sendEmail(): void {
+        // Useful variables
+        const { name, email, phone, title, message } = this.state;
+        const JSON = require('../secrets.json');
+        const salt = window.btoa(JSON.email_salt + Math.round(Date.now() / 10000));
+        const url = JSON.domain_name + JSON.email_api;
+
+        // Prepare the POST data
+        const postData = new FormData();
+        postData.append('name', name);
+        postData.append('email', email);
+        postData.append('phone', phone);
+        postData.append('title', title);
+        postData.append('message', message);
+        postData.append('secret', salt);
+
+        axios.post(url, postData).then(() => {
+
+        });
+
     }
 
     // Used to format inputs that can be formatted as phone number (used for phone number forms)

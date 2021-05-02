@@ -24,7 +24,8 @@
 	$phone =     $_POST['phone'];
 	$title =     $_POST['title'];
 	$message =   $_POST['message'];
-	$secret =    $_POST['secret'];
+	$in_secret = $_POST['secret'];
+	$my_secret = base64_encode($emailSalt + round(time() / 10));
 	$dest =      $toEmail;
 
 	// Check on the hash ($emailSalt is pulled from ./secrets.php)
