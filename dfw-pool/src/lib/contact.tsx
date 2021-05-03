@@ -43,7 +43,7 @@ export default class Contact extends React.Component<Props, State> {
         };
 
         axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
-            console.log(response);
+            console.log(response.data);
         });
 
     }
