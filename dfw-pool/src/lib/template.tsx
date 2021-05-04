@@ -127,5 +127,14 @@ export default class Template {
             <Contact disabled={false}/>
         );
     }
+
+    public footer(): JSX.Element {
+        return(
+            <div key='_ft' className='section footer'>
+                <div key='_ftc' className='section-container'>
+                </div>
+            </div>
+        );
+    }
     
 }
