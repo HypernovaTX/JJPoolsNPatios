@@ -129,9 +129,13 @@ export default class Template {
     }
 
     public footer(): JSX.Element {
+        const copyright = ' 2010 - 2021, JJ Industries';
+        const author = 'Website designed and programmed by Arthur (Hypernova) Guo';
         return(
             <div key='_ft' className='section footer'>
                 <div key='_ftc' className='section-container'>
+                    <span key='_f_text1' className='footer-text'>Copyright &#169;{copyright}</span>
+                    <span key='_f_text2' className='footer-text'>{author}</span>
                 </div>
             </div>
         );
