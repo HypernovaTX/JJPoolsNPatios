@@ -245,3 +245,10 @@ form.contact-form textarea {
     border-radius: 0.25em;
     background-color: var(--accent-color5);
 }
+
+.section.footer {
+    background: var(--accent-color);
+    padding: 48px;
+    color: #FFF;
+    border-top: 8px solid var(--button-color);
+}
