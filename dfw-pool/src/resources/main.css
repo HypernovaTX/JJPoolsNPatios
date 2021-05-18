@@ -252,3 +252,11 @@ form.contact-form textarea {
     color: #FFF;
     border-top: 8px solid var(--button-color);
 }
+
+.footer svg {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: -2;
+}
