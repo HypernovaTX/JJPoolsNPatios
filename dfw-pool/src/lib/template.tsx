@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYelp } from '@fortawesome/free-brands-svg-icons';
 import Contact from './contact';
+import Wave from 'react-wavify';
 
 export default class Template {
     test: number;
@@ -133,9 +134,18 @@ export default class Template {
         const author = 'Website designed and programmed by Arthur (Hypernova) Guo';
         return(
             <div key='_ft' className='section footer'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill="#0099ff" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,202.7C480,203,600,181,720,170.7C840,160,960,160,1080,154.7C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                </svg>
+                <Wave
+                    fill='var(--accent-color)' paused={false}
+                    options={{ height: 180, amplitude: 23, speed: 0.15, points: 6 }}
+                />
+                <Wave
+                    fill='var(--accent-color)' paused={false}
+                    options={{ height: 180, amplitude: 24, speed: 0.2, points: 8 }}
+                />
+                <Wave
+                    fill='var(--accent-color)' paused={false}
+                    options={{ height: 180, amplitude: 25, speed: 0.25, points: 10 }}
+                />
                 <div key='_ftc' className='section-container'>
                     <span key='_f_text1' className='footer-text'>Copyright &#169;{copyright}</span>
                     <span key='_f_text2' className='footer-text'>{author}</span>
@@ -143,5 +153,12 @@ export default class Template {
             </div>
         );
     }
+
+    /**
+     * Unused SVG
+     * <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#0099ff" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,202.7C480,203,600,181,720,170.7C840,160,960,160,1080,154.7C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                </svg>
+     */
     
 }
