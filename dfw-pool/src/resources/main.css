@@ -232,6 +232,7 @@ form.contact-form {
     border-radius: 0.5em;
     margin-bottom: 48px;
     color: #FFF;
+    box-shadow: 0 4px 4px var(--shadow);
 }
 
 form.contact-form input[type='text' i],

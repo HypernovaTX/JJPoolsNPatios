@@ -25,7 +25,6 @@
 	$title =     $_POST['title'];
 	$message =   $_POST['message'];
 	$in_secret = $_POST['secret'];
-	$my_secret = base64_encode ($emailSalt . strval (round (time () / 10)));
 	$dest =      $toEmail;
 
 	// Check on the hash ($emailSalt is pulled from ./secrets.php)
@@ -33,7 +32,6 @@
 		echo ('bad secret');
 		exit ('');
 	}
-	// TO DO - Need hash security
 	
 	// Email headers
 	$headers =  "MIME-Version: 1.0" . "\r\n";
