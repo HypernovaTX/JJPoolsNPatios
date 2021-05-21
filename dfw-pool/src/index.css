@@ -6,6 +6,11 @@
   font-family: Antonio;
   src: url(./resources/antonio.ttf);
 }
+@font-face {
+  font-family: Roboto;
+  src: url(./resources/roboto1.ttf);
+}
+
 
 body {
   margin: 0;
@@ -48,7 +53,7 @@ input[type="button" i], input[type="submit" i] {
   transition: 200ms linear all, 50ms linear margin;
   box-shadow: 0 4px 4px var(--shadow);
   cursor: pointer;
-  font-family: monospace;
+  font-family: Roboto;
   margin: 2px auto 2px;
   max-width: calc(100% - 4px);
   white-space: normal;

@@ -2,16 +2,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYelp } from '@fortawesome/free-brands-svg-icons';
 import Contact from './contact';
 import Wave from 'react-wavify';
+import React from 'react';
 
 export default class Template {
     test: number;
     key: number;
     phone: string;
+    contactRef: React.RefObject<HTMLDivElement>;
+    scrollBehavior: { [key: string]: string };
 
     constructor(cTest: number) {
         this.test = cTest;
         this.key = 0;
         this.phone = '214-469-9009';
+        this.contactRef = React.createRef();
+        this.scrollBehavior = { behavior: 'smooth', block: 'start' };
     }
 
     private phoneNumber= () => { document.location.href = `tel:${this.phone}`; };
@@ -20,18 +25,31 @@ export default class Template {
         return this.key ++;
     }
 
+    private scrollTo(ref: React.RefObject<any>): () => void {
+        const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+        if (iosPlatforms.indexOf(window.navigator.platform) === -1) { return () => { ref.current.scrollIntoView(this.scrollBehavior); }; }
+        return () => { ref.current.scrollIntoViewIfNeeded(this.scrollBehavior); };
+    }
+
     public header(y: number): JSX.Element {
         const title = `JJ Pools & Patios`;
         const summary = `Established in 2010. Over 10 years of experience JJ Pools & Patios provides a reliable and trustworthy service for your pool. Cleaning and remodelling is what we do best for you to spend your time in a crystal-clear pool.`;
-        const sectionStyle = { backgroundPosition: `0px ${y/3}px`, }
+        const buttonText = `Reach out to us today!`;
+        const sectionStyle = { backgroundPosition: `0px ${y/3}px`, };
         return (
             <div key='_h' className='section head' style={sectionStyle}>
                 <div key='_hc' className='section-container'>
+                    <Wave fill='var(--accent-color2)' paused={false} options={{ height: 180, amplitude: 25, speed: 0.26, points: 12 }} />
+                    <Wave fill='var(--accent-color2)' paused={false} options={{ height: 180, amplitude: 24, speed: 0.25, points: 10 }} />
+                    <Wave fill='var(--accent-color2)' paused={false} options={{ height: 180, amplitude: 23, speed: 0.24, points: 8 }} />
                     <div key='_hcl' className='section-logo'></div>
                     <div key='_hcc' className='section-content'>
                         <div key='_hcc_t' className='section-t head'>{title}</div>
                         <div key='_hcc_p' className='section-p head'>{summary}</div>
-                        <input key='_hcc_b' type='button' className='section-b head' value='Reach out to us today!'/>
+                        <input
+                            key='_hcc_b' type='button' className='section-b head' value={buttonText}
+                            onClick={this.scrollTo(this.contactRef)}
+                        />
                     </div>
                 </div>
             </div>
@@ -125,7 +143,10 @@ export default class Template {
 
     public contactSection(): JSX.Element {
         return(
-            <Contact disabled={false}/>
+            <div key='_ct_wrap'>
+                <div key='_ct_ref'  ref={this.contactRef} className='contact-ref'></div>
+                <Contact disabled={false}/>
+            </div>
         );
     }
 
