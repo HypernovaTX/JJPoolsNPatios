@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faYelp } from '@fortawesome/free-brands-svg-icons';
 import Contact from './contact';
 import Wave from 'react-wavify';
@@ -32,7 +33,7 @@ export default class Template {
     }
 
     public header(y: number): JSX.Element {
-        const title = `JJ Pools & Patios`;
+        //const title = `JJ Pools & Patios`; //<div key='_hcc_t' className='section-t head'>{title}</div>
         const summary = `Established in 2010. Over 10 years of experience JJ Pools & Patios provides a reliable and trustworthy service for your pool. Cleaning and remodelling is what we do best for you to spend your time in a crystal-clear pool.`;
         const buttonText = `Reach out to us today!`;
         const sectionStyle = { backgroundPosition: `0px ${y/3}px`, };
@@ -44,7 +45,6 @@ export default class Template {
                     <Wave fill='var(--accent-color2)' paused={false} options={{ height: 180, amplitude: 23, speed: 0.24, points: 8 }} />
                     <div key='_hcl' className='section-logo'></div>
                     <div key='_hcc' className='section-content'>
-                        <div key='_hcc_t' className='section-t head'>{title}</div>
                         <div key='_hcc_p' className='section-p head'>{summary}</div>
                         <input
                             key='_hcc_b' type='button' className='section-b head' value={buttonText}
@@ -62,6 +62,11 @@ export default class Template {
             <div key='_social' className='social-bar'>
                 <div key='_social_p' className='phone-box'>
                     <input key='_social_pb' type='button' className='section-b' value={`PHONE: ${this.phone}`} onClick={this.phoneNumber}/>
+                </div>
+                <div key='_social_p' className='social-box mobile' onClick={this.phoneNumber}>
+                    <div key='_social_pbm' className='social-b'>
+                        <FontAwesomeIcon icon={faPhoneAlt}/>
+                    </div>
                 </div>
                 <div key='_social_y' className='social-box'>
                     <a href={yelp} key='_social_yb' className='social-b' target='_blank' rel="noreferrer">

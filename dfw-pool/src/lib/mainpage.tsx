@@ -1,6 +1,7 @@
 import React from 'react';
 import Template from './template';
 import '../resources/main.css';
+import '../resources/mobile.css';
 
 type Props = {
 };

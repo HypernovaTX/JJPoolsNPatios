@@ -81,6 +81,7 @@
 .section-p.head {
     text-shadow: 0 3px 3px var(--shadow);
     text-align: center;
+    margin-top: 8px;
 }
 
 input.section-b.head {
@@ -171,15 +172,20 @@ input.section-b.head:hover {
 }
 
 .social-bar {
-    background: rgba(0,0,0,0.5);
     display: flex;
     flex-flow: row-reverse;
     position: fixed;
     width: var(--view-width);
     z-index: 10;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 4px var(--shadow);
+    
 }
+
+.social-bar.full {
+    background: rgba(0, 73, 168, 0.75);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0px 4px 4px rgba(0, 0, 0, 0.6);
+}
+
 .phone-box, .social-box {
     display: block;
     padding: 10px;
@@ -187,6 +193,7 @@ input.section-b.head:hover {
     width: 11em;
 }
 .social-box { width: fit-content; }
+.social-box.mobile { display: none; }
 .social-b {
     background-color: var(--button-color);
     border: 0;
@@ -217,7 +224,8 @@ input.section-b.head:hover {
     font-size: 1.05em;
     padding: 11px 12px;
 }
-.social-b svg.svg-inline--fa.fa-yelp.fa-w-12 {
+.social-b svg.svg-inline--fa.fa-yelp.fa-w-12,
+.social-b svg.svg-inline--fa.fa-phone-alt.fa-w-16 {
     filter: drop-shadow(0px 2px 2px var(--shadow));
 }
 

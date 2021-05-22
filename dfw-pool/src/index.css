@@ -12,12 +12,12 @@
 }
 
 
-body {
+html,body {
   margin: 0;
   font-family: QuickSand;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: var(--view-width);
+  width: 100vw;
   overflow-x: hidden;
   position: relative;
 }

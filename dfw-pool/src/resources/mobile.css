@@ -1,0 +1,59 @@
+@media only screen and (max-width: 480px) {
+    :root {
+        --view-width: 100vw;
+    }
+
+    .section-container {
+        align-items: center;
+        justify-content: center;
+    }
+    .head .section-container {
+        padding-top: 4.5em;
+        margin-bottom: 8em;
+    }
+    .footer .section-container {
+        padding: 0 1em;
+        width: fit-content;
+    }
+    .contact .section-container {
+        margin-bottom: 4em;
+    }
+    .section-logo {
+        max-height: 8em;
+        margin: initial;
+    }
+    .section.head .section-content {
+        all: inherit;
+        font-size: 1em;
+        width: 90vw;
+        height: -moz-fit-content;
+        height: fit-content;
+        z-index: 0;
+        padding: 8px 32px;
+    }
+
+    .social-box.mobile { display: block; }
+    .phone-box { display: none; }
+
+    form.contact-form {
+        width: 100%;
+        padding: 1.5em 1em;
+        border-radius: initial;
+        margin: initial;
+    }
+    form.contact-form input[type='text' i],
+    form.contact-form input[type='email' i], 
+    form.contact-form textarea {
+        margin: 0.25em 1em 1em;
+        border-radius: 0;
+        font-size: 0.9em;
+    }
+    form.contact-form label {
+        margin: 0em 1em;
+        font-size: 0.8em;
+    }
+
+    .footer-text {
+        font-size: 0.85em;
+    }
+}
