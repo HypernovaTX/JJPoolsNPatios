@@ -33,7 +33,7 @@ export default class MainPage extends React.Component<Props, State> {
 
     public render() {
         let content = (<React.Fragment key='_content'>
-            {this.t.headerSocial()}
+            {this.t.headerSocial(this.state.scroll)}
             {this.t.header(this.state.scroll)}
             {this.t.wavyBorder(this.state.scroll)}
             {this.t.section1()}

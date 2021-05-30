@@ -58,6 +58,7 @@ input[type="button" i], input[type="submit" i] {
   max-width: calc(100% - 4px);
   white-space: normal;
   text-shadow: 0 2px 2px #000;
+  -webkit-appearance: none;
 }
 input[type="button" i]:hover, input[type="submit" i]:hover {
   background-color: var(--button-hover-color);

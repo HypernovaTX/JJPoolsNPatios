@@ -7,6 +7,9 @@
         align-items: center;
         justify-content: center;
     }
+    .section.head {
+        height: 90vh;
+    }
     .head .section-container {
         padding-top: 4.5em;
         margin-bottom: 8em;
@@ -23,13 +26,24 @@
         margin: initial;
     }
     .section.head .section-content {
-        all: inherit;
+        /*all: inherit;*/
+        background: none;
+        backdrop-filter: initial;
+        margin: initial;
+        border-radius: initial;
+        box-shadow: initial;
+        max-width: initial;
+        display: block;
+
+        text-align: center;
         font-size: 1em;
         width: 90vw;
         height: -moz-fit-content;
         height: fit-content;
         z-index: 0;
         padding: 8px 32px;
+        font-family: QuickSand;
+        color: #FFF;
     }
 
     .social-box.mobile { display: block; }
