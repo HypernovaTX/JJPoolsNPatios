@@ -39,7 +39,7 @@ export default class Template {
         //const title = `JJ Pools & Patios`; //<div key='_hcc_t' className='section-t head'>{title}</div>
         const summary = `Established in 2010. Over 10 years of experience JJ Pools & Patios provides a reliable and trustworthy service for your pool. Cleaning and remodelling is what we do best for you to spend your time in a crystal-clear pool.`;
         const buttonText = `Reach out to us today!`;
-        const sectionStyle = { backgroundPosition: `0px ${y/3}px`, };
+        const sectionStyle = { backgroundPositionY: `${Math.round(y/3)}px`, }; //
         const points = (window.innerWidth > 480) ? 8 : 4;
         return (
             <div key='_h' className='section head' style={sectionStyle}>
@@ -101,7 +101,7 @@ export default class Template {
 
     public section1(): JSX.Element {
         return (
-            <div key='_s1' className='section'>
+            <div key='_s1' className='section s1'>
                 <div key='_s1c' className='section-container s1'>
                     <h1 key='_s1h' className='section-title'>Our Services</h1>
                     {this.ourServices()}

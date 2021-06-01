@@ -41,7 +41,6 @@ code {
   --shadow: rgba(0, 0, 0, 0.6);
 
   --view-width: calc(100vw - (100vw - 100%));
-  --view-ratio: calc(100vw / 100vh)
 }
 
 input[type="button" i], input[type="submit" i] {

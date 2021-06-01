@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 880px) {
     :root {
         --view-width: 100vw;
     }
@@ -8,15 +8,16 @@
         justify-content: center;
     }
     .section.head {
-        height: 90vh;
+        height: 100vh;
     }
     .head .section-container {
         padding-top: 4.5em;
         margin-bottom: 8em;
+        max-height: calc(100vh - 8em);
     }
     .footer .section-container {
-        padding: 0 1em;
-        width: fit-content;
+        padding: 0;
+        width: 100%;
     }
     .contact .section-container {
         margin-bottom: 4em;
@@ -24,6 +25,7 @@
     .section-logo {
         max-height: 8em;
         margin: initial;
+        min-height: 4em;
     }
     .section.head .section-content {
         /*all: inherit;*/
@@ -69,5 +71,12 @@
 
     .footer-text {
         font-size: 0.85em;
+        margin: 0 1em;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .section-p.head {
+        font-size: 0.8em;
     }
 }
