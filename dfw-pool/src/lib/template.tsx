@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { faYelp } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faYelp } from '@fortawesome/free-brands-svg-icons';
 import Contact from './contact';
 import Wave from 'react-wavify';
 import React from 'react';
@@ -62,6 +62,8 @@ export default class Template {
 
     public headerSocial(y: number): JSX.Element {
         const yelp = 'https://www.yelp.com/biz/jj-pools-and-patios-coppell-3';
+        const facebook = 'https://www.facebook.com/JJ-pools-patios-110585747802924/';
+        const twitter = 'https://twitter.com/jjpoolsnpatios';
         const socialName = (y < 24) ? '' : 'on';
         return (
             <div key='_social' className='social-bar'>
@@ -73,6 +75,16 @@ export default class Template {
                     <div key='_social_pbm' className='social-b'>
                         <FontAwesomeIcon icon={faPhoneAlt}/>
                     </div>
+                </div>
+                <div key='_social_f' className='social-box'>
+                    <a href={facebook} key='_social_fb' className='social-b' target='_blank' rel="noreferrer">
+                        <FontAwesomeIcon icon={faFacebook}/>
+                    </a>
+                </div>
+                <div key='_social_t' className='social-box'>
+                    <a href={twitter} key='_social_tb' className='social-b' target='_blank' rel="noreferrer">
+                        <FontAwesomeIcon icon={faTwitter}/>
+                    </a>
                 </div>
                 <div key='_social_y' className='social-box'>
                     <a href={yelp} key='_social_yb' className='social-b' target='_blank' rel="noreferrer">

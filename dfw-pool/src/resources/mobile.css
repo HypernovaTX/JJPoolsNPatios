@@ -48,8 +48,20 @@
         color: #FFF;
     }
 
-    .social-box.mobile { display: block; }
+    .social-box {
+        font-size: 0.8em;
+        padding: 10px 5px;
+    }
+    .social-box.mobile {
+        display: block;
+    }
     .phone-box { display: none; }
+    .social-b {
+        padding: 0.4em 0.8em;
+        width: 1em;
+        display: flex;
+        justify-content: center;
+    }
 
     form.contact-form {
         width: 100%;

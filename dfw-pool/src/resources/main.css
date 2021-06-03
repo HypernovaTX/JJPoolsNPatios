@@ -243,6 +243,8 @@ input.section-b.head:hover {
     padding: 11px 12px;
 }
 .social-b svg.svg-inline--fa.fa-yelp.fa-w-12,
+.social-b svg.svg-inline--fa.fa-facebook.fa-w-16,
+.social-b svg.svg-inline--fa.fa-twitter.fa-w-16,
 .social-b svg.svg-inline--fa.fa-phone-alt.fa-w-16 {
     filter: drop-shadow(0px 2px 2px var(--shadow));
 }
