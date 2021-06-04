@@ -29,9 +29,15 @@ export default class Template {
     private scrollTo(ref: React.RefObject<any>): () => void {
         const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
         if (iosPlatforms.indexOf(window.navigator.platform) !== -1) {
-            return () => { ref.current.scrollIntoViewIfNeeded(this.scrollBehavior); };
+            return () => {
+                //window.alert(`:( iOS detected (${window.navigator.platform})`);
+                ref.current.scrollIntoView(true);
+            };
         } else {
-            return () => { ref.current.scrollIntoView(this.scrollBehavior); };
+            return () => {
+                //window.alert(`Non iOS`);
+                ref.current.scrollIntoView(this.scrollBehavior);
+            };
         }
     }
 

@@ -64,6 +64,7 @@
     width: 40em;
     max-width: 60vw;
     display: block;
+    z-index: 1;
 }
 
 .section-t, .section-p {
