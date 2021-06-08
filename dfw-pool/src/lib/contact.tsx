@@ -82,6 +82,7 @@ export default class Contact extends React.Component<Props, State> {
             case (Form.title): verify.title = (this.state.title === '') ? false : true; break;
             case (Form.message): verify.message = (this.state.message === '') ? false : true; break;
         }
+        this.setState({ verify });
     }
 
 
@@ -106,13 +107,16 @@ export default class Contact extends React.Component<Props, State> {
 
         // Map the array of OBJ for forms into JSX.Element[]
         const inputs = forms.map((item, n) => {
-            const className = (verify[item.n] === true) ? ' ' : 'error';
+            const className = (verify[item.n] || verify[item.n] === undefined) ? ' ' : 'error';
             return(
                 <React.Fragment key={`_placeholder_form${n}`}>
                     <label>{item.l}</label>
                     <input
-                        name={item.n} type={item.t} value={item.v} onBlur={item.b} className={className}
-                        onChange={(e: rc_it) => { this.updateForm(item.e, e.target.value) }}
+                        name={item.n} type={item.t} value={item.v} className={className} onBlur={item.b}
+                        onChange={(e: rc_it) => {
+                            this.updateForm(item.e, e.target.value);
+                            setTimeout(item.b, 100);
+                        }}
                     ></input>
                 </React.Fragment>
             );
@@ -129,7 +133,10 @@ export default class Contact extends React.Component<Props, State> {
                 <label>Message</label>
                 <textarea
                     name='message' rows={8} value={message} onBlur={() => { this.checkBlank(Form.message) }}
-                    onChange={(e: rc_ta) => { this.updateForm(Form.message, e.target.value) }}
+                    onChange={(e: rc_ta) => { 
+                        this.updateForm(Form.message, e.target.value);
+                        setTimeout(() => { this.checkBlank(Form.message) }, 100);
+                    }}
                 ></textarea>
             </React.Fragment>
         );

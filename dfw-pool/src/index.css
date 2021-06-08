@@ -33,6 +33,8 @@ code {
   --accent-color3: rgb(0, 104, 240);
   --accent-color4: rgb(132, 185, 255);
   --accent-color5: rgb(203, 225, 255);
+  --error-c: rgb(155, 0, 0);
+  --error-bg: rgb(255, 204, 195);
   --text-color: rgb(30, 30, 30);
   --button-color: rgb(235, 106, 0);
   --button-hover-color: rgb(255, 196, 0);
