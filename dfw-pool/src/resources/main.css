@@ -283,6 +283,13 @@ form.contact-form textarea.error {
     background-color: var(--error-bg);
 }
 
+form.contact-form input[type='text' i]:disabled,
+form.contact-form input[type='email' i]:disabled, 
+form.contact-form textarea:disabled {
+    color: #444;
+    background-color: #AAA;
+}
+
 .section.footer {
     /*background: var(--accent-color);*/
     /*border-top: 8px solid var(--button-color);*/

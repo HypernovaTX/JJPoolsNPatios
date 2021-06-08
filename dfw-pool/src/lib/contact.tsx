@@ -25,11 +25,19 @@ export default class Contact extends React.Component<Props, State> {
 
     private sendEmail(): void {
         // Useful variables
-        const { name, email, phone, title, message } = this.state;
+        const { name, email, phone, title, message, recaptcha } = this.state;
         const JSON = require('../secrets.json');
         const salt = window.btoa(JSON.email_salt + Math.round(Date.now() / 10000));
         const url = JSON.domain_name + JSON.email_api;
         this.setState({ sending: true });
+
+        // First, verify if all of the inputs are filled out
+        if (!name || !email || !phone || !title || !message) {
+            window.alert('One or more form are left blank! Please check for any red input box!'); return;
+        }
+        if (!recaptcha) {
+            window.alert('Please verify reCaptcha that you are not a bot.'); return;
+        }
 
         // Prepare the POST data
         const postData = new FormData();
@@ -90,7 +98,7 @@ export default class Contact extends React.Component<Props, State> {
 
     // All of the forms 
     private templateForms(): JSX.Element[] {
-        const { name, email, phone, title, verify } = this.state;
+        const { name, email, phone, title, verify, sending } = this.state;
         // Prepare all of the forms as OBJ
         /** Property types
          * l: label text
@@ -114,7 +122,7 @@ export default class Contact extends React.Component<Props, State> {
                 <React.Fragment key={`_placeholder_form${n}`}>
                     <label>{item.l}</label>
                     <input
-                        name={item.n} type={item.t} value={item.v} className={className} onBlur={item.b}
+                        name={item.n} type={item.t} value={item.v} className={className} onBlur={item.b} disabled={sending}
                         onChange={(e: rc_it) => {
                             this.updateForm(item.e, e.target.value);
                             setTimeout(item.b, 100);
@@ -134,7 +142,8 @@ export default class Contact extends React.Component<Props, State> {
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
                 <textarea
-                    name='message' rows={8} value={message} onBlur={() => { this.checkBlank(Form.message) }}
+                    name='message' rows={8} value={message} disabled={sending}
+                    onBlur={() => { this.checkBlank(Form.message) }}
                     onChange={(e: rc_ta) => { 
                         this.updateForm(Form.message, e.target.value);
                         setTimeout(() => { this.checkBlank(Form.message) }, 100);
@@ -145,6 +154,12 @@ export default class Contact extends React.Component<Props, State> {
         const button = (
             <input type="button" value="Submit" onClick={() => {this.sendEmail()}} disabled={sending}></input>
         );
+        /*const reset = (
+            <input type="button" value="&#11119;" onClick={() => {
+                // eslint-disable-next-line no-restricted-globals
+                if (confirm("Confirm to clear everything in the contact form?")) { this.resetValue(); }
+            }} disabled={sending}></input>
+        );*/
 
         return (
             <div key='_c' className='section contact'>
