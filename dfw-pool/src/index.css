@@ -68,6 +68,12 @@ input[type="button" i]:hover, input[type="submit" i]:hover {
 input[type="button" i]:active, input[type="submit" i]:active {
   background-color: var(--button-click-color);
 }
+input[type="button" i]:disabled, input[type="submit" i]:disabled {
+  background-color: #777;
+  color: #CCC;
+  cursor: not-allowed;
+  margin: 2px auto 2px;
+}
 
 textarea {
   resize: none;

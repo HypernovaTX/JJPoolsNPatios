@@ -29,6 +29,7 @@ export default class Contact extends React.Component<Props, State> {
         const JSON = require('../secrets.json');
         const salt = window.btoa(JSON.email_salt + Math.round(Date.now() / 10000));
         const url = JSON.domain_name + JSON.email_api;
+        this.setState({ sending: true });
 
         // Prepare the POST data
         const postData = new FormData();
@@ -44,7 +45,8 @@ export default class Contact extends React.Component<Props, State> {
         };
 
         axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
-            console.log(response.data);
+            if (response.data === 'success') {}
+            this.setState({ sending: false });
         });
 
     }
@@ -127,7 +129,7 @@ export default class Contact extends React.Component<Props, State> {
 
     // MAIN contact template
     private template(): JSX.Element {
-        const { message } = this.state;
+        const { message, sending } = this.state;
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
@@ -141,7 +143,7 @@ export default class Contact extends React.Component<Props, State> {
             </React.Fragment>
         );
         const button = (
-            <input type="button" value="Submit" onClick={() => {this.sendEmail()}}></input>
+            <input type="button" value="Submit" onClick={() => {this.sendEmail()}} disabled={sending}></input>
         );
 
         return (
