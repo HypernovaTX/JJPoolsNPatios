@@ -2,16 +2,17 @@ import axios, { AxiosResponse } from 'axios';
 import React from 'react';
 
 type Props = { disabled: boolean, };
-type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, sending: boolean };
+type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, sending: boolean, verify: verify };
 type rc_it = React.ChangeEvent<HTMLInputElement>;
 type rc_ta = React.ChangeEvent<HTMLTextAreaElement>;
+interface verify { [key: string]: boolean };
 enum Form { name, email, phone, title, message, };
 
 export default class Contact extends React.Component<Props, State> {
     constructor(p: Props) {
         super(p);
         this.state = {
-            name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false
+            name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false, verify: {}
         }
     }
 
@@ -71,10 +72,22 @@ export default class Contact extends React.Component<Props, State> {
         }
     }
 
+    // Use this to check if the form is blank or not
+    private checkBlank(state: number) {
+        const { verify } = this.state;
+        switch (state) {
+            case (Form.name): verify.name = (this.state.name === '') ? false : true; break;
+            case (Form.email): verify.email = (this.state.email === '') ? false : true; break;
+            case (Form.phone): verify.phone = (this.state.phone === '') ? false : true; break;
+            case (Form.title): verify.title = (this.state.title === '') ? false : true; break;
+            case (Form.message): verify.message = (this.state.message === '') ? false : true; break;
+        }
+    }
+
 
     // All of the forms 
     private templateForms(): JSX.Element[] {
-        const { name, email, phone, title } = this.state;
+        const { name, email, phone, title, verify } = this.state;
         // Prepare all of the forms as OBJ
         /** Property types
          * l: label text
@@ -82,20 +95,25 @@ export default class Contact extends React.Component<Props, State> {
          * t: input type
          * e: see Enum Form
          * v: value
+         * b: onBlur action
          * */ 
         const forms = [
-            { l: 'Name', n: 'name', t: 'text', e: Form.name, v: name },
-            { l: 'Email', n: 'email', t: 'email', e: Form.email, v: email },
-            { l: 'Phone', n: 'phone', t: 'text', e: Form.phone, v: phone },
-            { l: 'Subject', n: 'title', t: 'text', e: Form.title, v: title },
+            { l: 'Name', n: 'name', t: 'text', e: Form.name, v: name, b: () => { this.checkBlank(Form.name) } },
+            { l: 'Email', n: 'email', t: 'email', e: Form.email, v: email, b: () => { this.checkBlank(Form.email) } },
+            { l: 'Phone', n: 'phone', t: 'text', e: Form.phone, v: phone, b: () => { this.checkBlank(Form.phone) } },
+            { l: 'Subject', n: 'title', t: 'text', e: Form.title, v: title, b: () => { this.checkBlank(Form.title) } },
         ];
 
         // Map the array of OBJ for forms into JSX.Element[]
         const inputs = forms.map((item, n) => {
+            const className = (verify[item.n] === true) ? ' ' : 'error';
             return(
                 <React.Fragment key={`_placeholder_form${n}`}>
                     <label>{item.l}</label>
-                    <input name={item.n} type={item.t} value={item.v} onChange={(e: rc_it) => { this.updateForm(item.e, e.target.value) }}></input>
+                    <input
+                        name={item.n} type={item.t} value={item.v} onBlur={item.b} className={className}
+                        onChange={(e: rc_it) => { this.updateForm(item.e, e.target.value) }}
+                    ></input>
                 </React.Fragment>
             );
         });
@@ -109,7 +127,10 @@ export default class Contact extends React.Component<Props, State> {
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
-                <textarea name='message' rows={8} value={message} onChange={(e: rc_ta) => { this.updateForm(Form.message, e.target.value) }}></textarea>
+                <textarea
+                    name='message' rows={8} value={message} onBlur={() => { this.checkBlank(Form.message) }}
+                    onChange={(e: rc_ta) => { this.updateForm(Form.message, e.target.value) }}
+                ></textarea>
             </React.Fragment>
         );
         const button = (
