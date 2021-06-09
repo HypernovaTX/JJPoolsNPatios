@@ -35,16 +35,20 @@ export default class Contact extends React.Component<Props, State> {
         this.setState({ sending: true });
 
         // First, verify if all of the inputs are filled out
-        if (!name || !email || !phone || !title || !message) {
-            window.alert('One or more form are left blank! Please check for any red input box!');
-            this.setState({ sending: false });
-            return;
+        let noError = true;
+        if ((!name || !email || !phone || !title || !message) && noError) {
+            window.alert('One or more form are left blank! Please check for any red input box!'); noError = false;
         }
-        if (!recaptcha) {
-            window.alert('Please verify reCaptcha that you are not a bot.');
-            this.setState({ sending: false });
-            return;
+        if (!this.verifyEmail() && noError) {
+            window.alert('Please enter a valid email!'); noError = false;
         }
+        if (!recaptcha && noError) {
+            window.alert('Please verify reCaptcha that you are not a bot.'); noError = false; 
+        }
+
+        // Stop when error occurs
+        this.setState({ sending: noError });
+        if (!noError) { return; }
 
         // Prepare the POST data
         const postData = new FormData();
