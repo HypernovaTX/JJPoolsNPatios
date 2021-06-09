@@ -9,11 +9,14 @@ interface verify { [key: string]: boolean };
 enum Form { name, email, phone, title, message, };
 
 export default class Contact extends React.Component<Props, State> {
+    emailRegex: RegExp;
     constructor(p: Props) {
         super(p);
         this.state = {
             name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false, verify: {}
         }
+        // eslint-disable-next-line no-control-regex
+        this.emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
     }
 
     // Reset the default - pretty obvious
@@ -33,10 +36,14 @@ export default class Contact extends React.Component<Props, State> {
 
         // First, verify if all of the inputs are filled out
         if (!name || !email || !phone || !title || !message) {
-            window.alert('One or more form are left blank! Please check for any red input box!'); return;
+            window.alert('One or more form are left blank! Please check for any red input box!');
+            this.setState({ sending: false });
+            return;
         }
         if (!recaptcha) {
-            window.alert('Please verify reCaptcha that you are not a bot.'); return;
+            window.alert('Please verify reCaptcha that you are not a bot.');
+            this.setState({ sending: false });
+            return;
         }
 
         // Prepare the POST data
@@ -95,6 +102,18 @@ export default class Contact extends React.Component<Props, State> {
         this.setState({ verify });
     }
 
+     // Use this to verify whether if the email is valid or not
+     private verifyEmail(): boolean {
+        this.checkBlank(Form.email);
+        const { verify, email } = this.state;
+        if (!email.match(this.emailRegex) && verify?.email) {
+            verify.email = false;
+            this.setState({ verify });
+            return false;
+        }
+        return true;
+    }
+
 
     // All of the forms 
     private templateForms(): JSX.Element[] {
@@ -110,7 +129,7 @@ export default class Contact extends React.Component<Props, State> {
          * */ 
         const forms = [
             { l: 'Name', n: 'name', t: 'text', e: Form.name, v: name, b: () => { this.checkBlank(Form.name) } },
-            { l: 'Email', n: 'email', t: 'email', e: Form.email, v: email, b: () => { this.checkBlank(Form.email) } },
+            { l: 'Email', n: 'email', t: 'email', e: Form.email, v: email, b: () => { this.verifyEmail() } },
             { l: 'Phone', n: 'phone', t: 'text', e: Form.phone, v: phone, b: () => { this.checkBlank(Form.phone) } },
             { l: 'Subject', n: 'title', t: 'text', e: Form.title, v: title, b: () => { this.checkBlank(Form.title) } },
         ];
