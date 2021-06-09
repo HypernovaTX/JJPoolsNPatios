@@ -30,7 +30,7 @@ export default class Contact extends React.Component<Props, State> {
 
     private sendEmail(): void {
         // Useful variables
-        const { name, email, phone, title, message, recaptcha } = this.state;
+        const { name, email, phone, title, message, recaptcha, verify } = this.state;
         const JSON = require('../secrets.json');
         const salt = window.btoa(JSON.email_salt + Math.round(Date.now() / 10000));
         const url = JSON.domain_name + JSON.email_api;
@@ -39,6 +39,12 @@ export default class Contact extends React.Component<Props, State> {
         // First, verify if all of the inputs are filled out
         let noError = true;
         if ((!name || !email || !phone || !title || !message) && noError) {
+            verify.name = (this.state.name === '') ? false : true;
+            verify.email = (this.state.email === '') ? false : true;
+            verify.phone = (this.state.phone === '') ? false : true;
+            verify.title = (this.state.title === '') ? false : true;
+            verify.message = (this.state.message === '') ? false : true;
+            this.setState({ verify });
             window.alert('One or more form are left blank! Please check for any red input box!'); noError = false;
         }
         if (!this.verifyEmail() && noError) {
@@ -69,7 +75,11 @@ export default class Contact extends React.Component<Props, State> {
         };
 
         axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
-            if (response.data === 'success') {}
+            if (response.data === 'success') {
+                window.alert('Thank you for submitting your inquiry! We will get back to you as soon as possible!');
+            } else {
+                window.alert(`Seems like there is an issue sending the email. \r\n \r\n Resonse: ${response.data}`);
+            }
             this.setState({ sending: false });
         });
 
@@ -155,7 +165,7 @@ export default class Contact extends React.Component<Props, State> {
             { l: 'Subject', n: 'title', t: 'text', e: Form.title, v: title, b: () => { this.checkBlank(Form.title) } },
         ];
 
-        // Map the array of OBJ for forms into JSX.Element[]
+        // Map the array of OBJ for forms into JSX.Element[] 
         const inputs = forms.map((item, n) => {
             const className = (verify[item.n] || verify[item.n] === undefined) ? ' ' : 'error';
             return(
@@ -177,12 +187,13 @@ export default class Contact extends React.Component<Props, State> {
 
     // MAIN contact template
     private template(): JSX.Element {
-        const { message, sending } = this.state;
+        const { message, sending, verify } = this.state;
+        const className = (verify.message || verify.message === undefined) ? ' ' : 'error';
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
                 <textarea
-                    name='message' rows={8} value={message} disabled={sending}
+                    name='message' rows={8} value={message} disabled={sending} className={className}
                     onBlur={() => { this.checkBlank(Form.message) }}
                     onChange={(e: rc_ta) => { 
                         this.updateForm(Form.message, e.target.value);
