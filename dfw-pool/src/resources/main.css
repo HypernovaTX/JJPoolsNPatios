@@ -339,3 +339,9 @@ form.contact-form textarea:disabled {
     z-index: 10;
     top: 3em;
 } 
+
+.recaptcha {
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+}

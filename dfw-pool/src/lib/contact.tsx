@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import React from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
 
 type Props = { disabled: boolean, };
 type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, sending: boolean, verify: verify };
@@ -189,6 +190,7 @@ export default class Contact extends React.Component<Props, State> {
     private template(): JSX.Element {
         const { message, sending, verify } = this.state;
         const className = (verify.message || verify.message === undefined) ? ' ' : 'error';
+        const JSON = require('../secrets.json');
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
@@ -217,7 +219,15 @@ export default class Contact extends React.Component<Props, State> {
                 <div key='_cc' className='section-container'>
                     <h1 key='_ch' className='section-title'>Contact Us</h1>
                     <form key='_cf' className='contact-form'>
-                        {this.templateForms()}{textbox}{button}
+                        {this.templateForms()}{textbox}
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                        <div key='_cr' className='recaptcha'>
+                            <ReCAPTCHA
+                                sitekey={JSON.recaptcha}
+                                onChange={() => { this.setState({ recaptcha: true }); }}
+                            />
+                        </div>
+                        {button}
                     </form>
                 </div>
             </div>
