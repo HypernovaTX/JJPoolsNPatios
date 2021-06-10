@@ -12,6 +12,8 @@ enum Form { name, email, phone, title, message, };
 export default class Contact extends React.Component<Props, State> {
     emailRegex: RegExp;
     phoneRegex: RegExp;
+    recaptchaRef: React.RefObject<ReCAPTCHA>;
+
     constructor(p: Props) {
         super(p);
         this.state = {
@@ -20,6 +22,7 @@ export default class Contact extends React.Component<Props, State> {
         // eslint-disable-next-line no-control-regex
         this.emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
         this.phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+        this.recaptchaRef = React.createRef();
     }
 
     // Reset the default - pretty obvious
@@ -37,7 +40,7 @@ export default class Contact extends React.Component<Props, State> {
         const url = JSON.domain_name + JSON.email_api;
         this.setState({ sending: true });
 
-        // First, verify if all of the inputs are filled out
+        // Error handling
         let noError = true;
         if ((!name || !email || !phone || !title || !message) && noError) {
             verify.name = (this.state.name === '') ? false : true;
@@ -59,8 +62,13 @@ export default class Contact extends React.Component<Props, State> {
         }
 
         // Stop when error occurs
-        this.setState({ sending: noError });
-        if (!noError) { return; }
+        this.setState({ sending: noError, recaptcha: noError });
+        if (!noError) {
+            if (this.recaptchaRef && this.recaptchaRef.current) {
+                this.recaptchaRef.current.reset();
+            }
+            return;
+        }
 
         // Prepare the POST data
         const postData = new FormData();
@@ -78,8 +86,9 @@ export default class Contact extends React.Component<Props, State> {
         axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
             if (response.data === 'success') {
                 window.alert('Thank you for submitting your inquiry! We will get back to you as soon as possible!');
+                this.resetValue();
             } else {
-                window.alert(`Seems like there is an issue sending the email. \r\n \r\n Resonse: ${response.data}`);
+                window.alert(`Seems like there is an issue sending the email.\r\n \r\nResponse: ${response.data}`);
             }
             this.setState({ sending: false });
         });
@@ -223,8 +232,9 @@ export default class Contact extends React.Component<Props, State> {
                         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                         <div key='_cr' className='recaptcha'>
                             <ReCAPTCHA
-                                sitekey={JSON.recaptcha}
+                                sitekey={JSON.recaptcha} ref={this.recaptchaRef}
                                 onChange={() => { this.setState({ recaptcha: true }); }}
+                                onExpired={() => { this.setState({ recaptcha: false }); }}
                             />
                         </div>
                         {button}
