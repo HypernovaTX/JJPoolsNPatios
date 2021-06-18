@@ -57,7 +57,7 @@ input[type="button" i], input[type="submit" i] {
   font-family: Roboto;
   margin: 2px auto 2px;
   max-width: calc(100% - 4px);
-  white-space: normal;
+  white-space: nowrap;
   text-shadow: 0 2px 2px #000;
   -webkit-appearance: none;
 }
