@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+//import axios, { AxiosResponse } from 'axios';
 import React from 'react';
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 
 type Props = { disabled: boolean, };
 type State = { name: string, email: string, phone: string, title: string, message: string, recaptcha: boolean, sending: boolean, verify: verify };
@@ -12,32 +12,32 @@ enum Form { name, email, phone, title, message, };
 export default class Contact extends React.Component<Props, State> {
     emailRegex: RegExp;
     phoneRegex: RegExp;
-    recaptchaRef: React.RefObject<ReCAPTCHA>;
+    //recaptchaRef: React.RefObject<ReCAPTCHA>;
 
     constructor(p: Props) {
         super(p);
         this.state = {
-            name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false, verify: {}
+            name: '', email: '', phone: '', title: '', message: '', recaptcha: true, sending: false, verify: {}
         }
         // eslint-disable-next-line no-control-regex
         this.emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
         this.phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-        this.recaptchaRef = React.createRef();
+        //this.recaptchaRef = React.createRef();
     }
 
     // Reset the default - pretty obvious
     private resetValue(): void {
         this.setState({
-            name: '', email: '', phone: '', title: '', message: '', recaptcha: false, sending: false
+            name: '', email: '', phone: '', title: '', message: '', recaptcha: true, sending: false
         });
     }
 
-    private sendEmail(): void {
+    private async sendEmail(): Promise<void> {
         // Useful variables
         const { name, email, phone, title, message, recaptcha, verify } = this.state;
-        const JSON = require('../secrets.json');
-        const salt = window.btoa(JSON.email_salt + Math.round(Date.now() / 10000));
-        const url = JSON.domain_name + JSON.email_api;
+        //const JSON = require('../secrets.json');
+        //const salt = window.btoa(JSON.email_salt + Math.round(Date.now() / 10000));
+        //const url = JSON.domain_name + JSON.email_api;
         this.setState({ sending: true });
 
         // Error handling
@@ -64,34 +64,40 @@ export default class Contact extends React.Component<Props, State> {
         // Stop when error occurs
         this.setState({ sending: noError, recaptcha: noError });
         if (!noError) {
-            if (this.recaptchaRef && this.recaptchaRef.current) {
-                this.recaptchaRef.current.reset();
-            }
+            // if (this.recaptchaRef && this.recaptchaRef.current) {
+            //     this.recaptchaRef.current.reset();
+            // }
             return;
         }
 
-        // Prepare the POST data
-        const postData = new FormData();
-        postData.append('name', name);
-        postData.append('email', email);
-        postData.append('phone', phone);
-        postData.append('title', title);
-        postData.append('message', message);
-        postData.append('secret', salt);
-        const header = {
-            headers: { 'Content-Type': 'application/x-www-form-urlencode', },
-            proxy: { host: 'localhost', port: 3000, }
-        };
-
-        axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
-            if (response.data === 'success') {
-                window.alert('Thank you for submitting your inquiry! We will get back to you as soon as possible!');
-                this.resetValue();
-            } else {
-                window.alert(`Seems like there is an issue sending the email.\r\n \r\nResponse: ${response.data}`);
-            }
+        (new Promise((resolve) => setTimeout(resolve, 300))).then(() => {
+            window.alert('Message has been sent！');
+            this.resetValue();
             this.setState({ sending: false });
         });
+
+        // Prepare the POST data
+        // const postData = new FormData();
+        // postData.append('name', name);
+        // postData.append('email', email);
+        // postData.append('phone', phone);
+        // postData.append('title', title);
+        // postData.append('message', message);
+        // postData.append('secret', salt);
+        // const header = {
+        //     headers: { 'Content-Type': 'application/x-www-form-urlencode', },
+        //     proxy: { host: 'localhost', port: 3000, }
+        // };
+
+        // axios.post(url, postData, header).then((response: AxiosResponse<string>) => {
+        //     if (response.data === 'success') {
+        //         window.alert('Thank you for submitting your inquiry! We will get back to you as soon as possible!');
+        //         this.resetValue();
+        //     } else {
+        //         window.alert(`Seems like there is an issue sending the email.\r\n \r\nResponse: ${response.data}`);
+        //     }
+        //     this.setState({ sending: false });
+        // });
 
     }
 
@@ -199,7 +205,7 @@ export default class Contact extends React.Component<Props, State> {
     private template(): JSX.Element {
         const { message, sending, verify } = this.state;
         const className = (verify.message || verify.message === undefined) ? ' ' : 'error';
-        const JSON = require('../secrets.json');
+        // const JSON = require('../secrets.json');
         const textbox = (
             <React.Fragment key={`_placeholder_textarea`}>
                 <label>Message</label>
@@ -229,14 +235,14 @@ export default class Contact extends React.Component<Props, State> {
                     <h1 key='_ch' className='section-title'>Contact Us</h1>
                     <form key='_cf' className='contact-form'>
                         {this.templateForms()}{textbox}
-                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                        <div key='_cr' className='recaptcha'>
+                        {/* <script src="https://www.google.com/recaptcha/api.js" async defer></script> */}
+                        {/* <div key='_cr' className='recaptcha'>
                             <ReCAPTCHA
                                 sitekey={JSON.recaptcha} ref={this.recaptchaRef}
                                 onChange={() => { this.setState({ recaptcha: true }); }}
                                 onExpired={() => { this.setState({ recaptcha: false }); }}
                             />
-                        </div>
+                        </div> */}
                         {button}
                     </form>
                 </div>

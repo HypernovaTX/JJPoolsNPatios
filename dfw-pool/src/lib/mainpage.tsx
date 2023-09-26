@@ -21,6 +21,7 @@ export default class MainPage extends React.Component<Props, State> {
     public componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
         this.setState({ scroll: window.pageYOffset });
+        window.alert('NOTE: This is a demo site to showcase my work with the business owner\'s approval. The company is no longer in business and the site has been taken down by the business owner.');
     }
     
     public componentWillUnmount() {
